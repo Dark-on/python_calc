@@ -27,18 +27,37 @@ def input_data():
         print("Некоректний ввід")
         return None, None, None
 
+
+def add(num1, num2) -> float:
+    return float(num1) + float(num2)
+
+
+def subtract(num1, num2) -> float:
+    return float(num1) - float(num2)
+
+
+def multiply(num1, num2) -> float:
+    return float(num1) * float(num2)
+
+
+def divide(num1, num2) -> float:
+    return float(num1) / float(num2)
+
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    ":": divide
+}
+
 num1, num2, operat = input_data()
 if num1:
-    if operat == "+":
-        print(f"{num1} {operat} {num2} = {float(num1) + float(num2)}")
-    elif operat == "-":
-        print(f"{num1} {operat} {num2} = {float(num1) - float(num2)}")
-    elif operat == ":":
-        if int(num2) == 0:
-            print("Не можна ділити на 0")
-        else:
-            print(f"{num1} {operat} {num2} = {float(num1) / float(num2)}")
-    elif operat == "*":
-        print(f"{num1} {operat} {num2} = {float(num1) * float(num2)}")
+    if operat == ":" and not int(num2):
+        print("Не можна ділити на 0")
     else:
-        print("Невідома операція")
+        operation = operations.get(operat)
+        if operation is None:
+            print("Невідома операція")
+        else:
+            print(f"{num1} {operat} {num2} = {operation(num1, num2)}")
