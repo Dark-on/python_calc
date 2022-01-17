@@ -1,4 +1,4 @@
-def input_data():
+def input_data() -> tuple: 
     num1 = input("Введіть перше число: ").strip()
     try:
         float(num1)
